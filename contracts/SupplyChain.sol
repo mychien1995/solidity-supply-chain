@@ -8,7 +8,7 @@ contract SupplyChain {
     mapping(string => Models.Product) products;
 
     address public constant ownerAddress =
-        0x26fCe62D149901d0bdbCfAF5779b452Dd1885e33;
+        0x435E41FA208CC37123f274b07F7E26b75262de4B;
 
     function getRole(address account) public view returns (string memory) {
         if (account == ownerAddress) return "Admin";
@@ -27,6 +27,15 @@ contract SupplyChain {
                 farmers[account] = newEntry;
             }
         }
+    }
+
+    function getFarmer(address account) public view returns(string memory name){
+        if (msg.sender == ownerAddress) {
+            if (!farmers[account].exist) {
+                return farmers[account].name;
+            }
+        }
+        return "";
     }
 
     function addDistributors(address account, string memory name) public {

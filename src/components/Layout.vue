@@ -1,11 +1,7 @@
 <template>
   <div class="main-panel" style="width: 100%">
     <nav
-      class="
-        navbar navbar-expand-lg navbar-absolute
-        fixed-top
-        navbar-transparent
-      "
+      class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent"
     >
       <div class="container-fluid">
         <div class="navbar-wrapper">
@@ -27,12 +23,25 @@
   </div>
 </template>
 <script>
+import { Role } from "../constants";
+import { useRouter } from "vue-router";
+
 import BlockchainService from "../services/blockchain.service";
 export default {
   name: "ApplicationLayout",
   setup() {
+    const router = useRouter();
+    console.log(router);
     (async () => {
       await BlockchainService.init();
+      const role = await BlockchainService.checkRole();
+      switch (role) {
+        case Role.ADMIN:
+          router.push({ path: "/admin" });
+          break;
+        default:
+          break;
+      }
     })();
   },
 };

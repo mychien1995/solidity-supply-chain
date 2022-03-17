@@ -325,6 +325,7 @@ var contract = (function(module) {
 
     this.allEvents = contract.allEvents;
     this.address = contract.address;
+    console.log(contract);
     this.transactionHash = contract.transactionHash;
   };
 

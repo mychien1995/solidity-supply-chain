@@ -1,6 +1,7 @@
 export const Role = {
-    ADMIN: 'ADMIN',
-    FARMER: 'FARMER',
-    DISTRIBUTOR: 'DISTRIBUTOR',
-    ANONYMOUS: 'ANONYMOUS'
+    ADMIN: 'Admin',
+    FARMER: 'Farmer',
+    DISTRIBUTOR: 'Distributor',
+    ANONYMOUS: 'Anonymous',
+    UNDEFINED : 'NONE'
 }
