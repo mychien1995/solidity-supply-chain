@@ -7,7 +7,7 @@
   "sourceMap": "29:549:1:-;;132:2:-1;166:7;155:9;146:7;137:37;255:7;249:14;246:1;241:23;235:4;232:33;222:2;;269:9;222:2;293:9;290:1;283:20;323:4;314:7;306:22;347:7;338;331:24",
   "deployedSourceMap": "29:549:1:-;;;;;;;;",
   "source": "pragma solidity >=0.4.24;\r\n\r\nlibrary Models {\r\n    enum State {\r\n        New,\r\n        ForSaleByFarmer,\r\n        PurchasedByDistributor,\r\n        ForSale\r\n    }\r\n\r\n    struct Product{\r\n        string sku;\r\n        address currentOwner;\r\n        address createdBy;\r\n        uint price;\r\n        string productName;\r\n        State status;\r\n        bool exist;\r\n    }\r\n\r\n    struct Farmer{\r\n        address ownerAddress;\r\n        string name;\r\n        bool exist;\r\n    }\r\n\r\n    struct Distributor{\r\n        address ownerAddress;\r\n        string name;\r\n        bool exist;\r\n    }\r\n}\r\n",
-  "sourcePath": "E:\\Projects\\SupplyChain\\contracts\\Models.sol",
+  "sourcePath": "E:\\Projects\\solidity-supply-chain\\contracts\\Models.sol",
   "ast": {
     "absolutePath": "project:/contracts/Models.sol",
     "exportedSymbols": {
@@ -944,12 +944,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x89bBfF65e7d097bB11084649dF83DB8ebbaBAcA1",
-      "transactionHash": "0xba7d06069ad915628c0965cdc7e47e62556ba5e6df8c0ef508ac41c54b1085e6"
+      "address": "0x3092097Fe207425B1CFF809f5E9B3d092A53e804",
+      "transactionHash": "0xed006b1b114991c45f8fe16e9338d7f350e3000fc17375b10249b0e880bcb082"
     }
   },
   "schemaVersion": "3.4.6",
-  "updatedAt": "2022-03-17T09:46:48.378Z",
+  "updatedAt": "2022-03-17T17:06:16.559Z",
+  "networkType": "ethereum",
   "devdoc": {
     "methods": {}
   },

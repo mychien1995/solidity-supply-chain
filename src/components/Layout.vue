@@ -1,7 +1,11 @@
 <template>
   <div class="main-panel" style="width: 100%">
     <nav
-      class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent"
+      class="
+        navbar navbar-expand-lg navbar-absolute
+        fixed-top
+        navbar-transparent
+      "
     >
       <div class="container-fluid">
         <div class="navbar-wrapper">
@@ -35,9 +39,13 @@ export default {
     (async () => {
       await BlockchainService.init();
       const role = await BlockchainService.checkRole();
+      console.log(role);
       switch (role) {
         case Role.ADMIN:
           router.push({ path: "/admin" });
+          break;
+        case Role.FARMER:
+          router.push({ path: "/farmer" });
           break;
         default:
           break;
