@@ -1,11 +1,9 @@
 pragma solidity >=0.4.24;
 
 library Models {
-    enum State {
-        New,
-        ForSaleByFarmer,
-        PurchasedByDistributor,
-        ForSale
+    enum Action{
+        CreateProduct,
+        TransferProduct
     }
 
     struct Product{
@@ -14,8 +12,15 @@ library Models {
         address createdBy;
         uint price;
         string productName;
-        State status;
         bool exist;
+    }
+
+    struct ItemHistory{
+        address transferFrom;
+        address transferTo;
+        uint blocknumber;
+        Action action;
+        uint256 timestamp;
     }
 
     struct Farmer{

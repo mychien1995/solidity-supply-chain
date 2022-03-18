@@ -3,7 +3,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h4 class="card-title">Farmer UI - {{ farmerName }}</h4>
+          <h4 class="card-title">Distributor UI - {{ distributorName }}</h4>
         </div>
         <div class="card-body">
           <button class="btn btn-info" @click="getProducts">
@@ -11,9 +11,6 @@
           </button>
           <button class="btn btn-info" @click="toggle('GetProductInfo')">
             Get Product Info
-          </button>
-          <button class="btn btn-info" @click="toggle('AddProduct')">
-            Create Product
           </button>
           <button class="btn btn-info" @click="getTransferProductView">
             Transfer Product
@@ -53,24 +50,6 @@
                 </tbody>
               </table>
             </div>
-            <div v-if="action == 'AddProduct'">
-              <input
-                class="form-control"
-                placeholder="SKU"
-                v-model="bindingModel.addProductSku"
-              />
-              <input
-                class="form-control mt-2"
-                placeholder="Name"
-                v-model="bindingModel.addProductName"
-              />
-              <input
-                class="form-control mt-2"
-                placeholder="Price"
-                v-model="bindingModel.addProductPrice"
-              />
-              <button class="btn btn-info" @click="addProduct">Submit</button>
-            </div>
             <div v-if="action == 'GetTransferProductView'">
               <input
                 class="form-control"
@@ -104,35 +83,30 @@ import { Role } from "../constants";
 import { ref } from "vue";
 import BlockchainService from "../services/blockchain.service";
 export default {
-  name: "FarmerPanel",
+  name: "DistributorPanel",
   setup() {
     let isDisplay = ref(false);
     let action = ref("");
-    let farmerName = ref("");
+    let distributorName = ref("");
     let bindingModel = ref({ products: [], distributors: [] });
     (async () => {
       let role = await BlockchainService.checkRole();
-      isDisplay = role == Role.FARMER;
-      BlockchainService.getFarmer(BlockchainService.getCurrentAddress()).then(
+      isDisplay = role == Role.DISTRIBUTOR;
+      BlockchainService.getDistributor(BlockchainService.getCurrentAddress()).then(
         (res) => {
-          farmerName.value = res;
+          distributorName.value = res;
         }
       );
     })();
 
-    return { isDisplay, action, bindingModel, farmerName };
+    return { isDisplay, action, bindingModel, distributorName };
   },
   methods: {
     toggle(panel) {
       this.bindingModel = { products: [], distributors: [] };
       this.action = panel;
     },
-    addProduct() {
-      const sku = this.bindingModel.addProductSku.trim();
-      const name = this.bindingModel.addProductName.trim();
-      const price = this.bindingModel.addProductPrice.trim();
-      (async () => await BlockchainService.addProduct(sku, name, price))();
-    },
+
     getProductInfo() {
       BlockchainService.getProductInfo(this.bindingModel.getProductSku).then(
         (res) => {
@@ -141,12 +115,14 @@ export default {
         }
       );
     },
+
     getProducts() {
       this.toggle("GetProducts");
       BlockchainService.getProducts().then((res) => {
         this.bindingModel.products = res;
       });
     },
+
     getTransferProductView() {
       this.toggle("GetTransferProductView");
       BlockchainService.getDistributors().then((res) => {
@@ -154,6 +130,7 @@ export default {
         this.bindingModel.distributors = res;
       });
     },
+    
     transferProduct() {
       const sku = this.bindingModel.transferSku.trim();
       const distributor = this.bindingModel.transferDistributor;

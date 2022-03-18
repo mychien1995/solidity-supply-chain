@@ -1,11 +1,7 @@
 <template>
   <div class="main-panel" style="width: 100%">
     <nav
-      class="
-        navbar navbar-expand-lg navbar-absolute
-        fixed-top
-        navbar-transparent
-      "
+      class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent"
     >
       <div class="container-fluid">
         <div class="navbar-wrapper">
@@ -46,6 +42,9 @@ export default {
           break;
         case Role.FARMER:
           router.push({ path: "/farmer" });
+          break;
+        case Role.DISTRIBUTOR:
+          router.push({ path: "/distributor" });
           break;
         default:
           break;
