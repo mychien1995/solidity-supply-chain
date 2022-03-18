@@ -46,6 +46,9 @@ export default {
         case Role.DISTRIBUTOR:
           router.push({ path: "/distributor" });
           break;
+        case Role.ANONYMOUS:
+          router.push({ path: "/anonymous" });
+          break;
         default:
           break;
       }
